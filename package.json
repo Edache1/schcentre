@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --watchAll --verbose",
     "start": "node ./bin/www"
   },
   "dependencies": {
