@@ -1,0 +1,38 @@
+<% const interval = data.interval; %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title"><%=title%></h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" name="update" method="post" action="/interval/update">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="term">Term</label>
+                <input type="text" class="form-control" id="term" name="term" placeholder="Term" value="<%-interval.term%>">
+                <input type="hidden" name="intid" value="<%-interval.intid%>">
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+    </div>
+    <a class="btn btn-sm btn-danger" href="/interval/delete/<%-interval.intid%>">delete</a>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<%- include('../templates/footer') %>

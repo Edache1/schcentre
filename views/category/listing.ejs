@@ -1,0 +1,13 @@
+<%  let categories = (data.categories) ? data.categories : ''; %>
+<div class="row">
+<% if (categories){ categories.forEach(category => { %>
+	<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+	  <div class="card-header"><%- category.catName %></div>
+	  <div class="card-body">
+	    <h4 class="card-title"><%- category.catName %></h4><br>
+	    <p class="card-text"><a href="/category/update/<%- category.catid %>">details</a></p>
+	  </div>
+	</div>
+<% })} %>
+</div>
+<%- include('../templates/footer') %>

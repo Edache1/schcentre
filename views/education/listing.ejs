@@ -1,0 +1,38 @@
+<% const edu = data.education; %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <%if(edu) {edu.forEach(sch => {%>
+      <div class="col-md-3">
+        <!-- Profile Image -->
+        <div class="card card-primary card-outline">
+          <div class="card-body box-profile">
+            <div class="text-center">
+              <img class="profile-user-img img-fluid img-circle"
+               src="../../dist/img/user4-128x128.jpg"
+               alt="User profile picture">
+            </div>
+            <h3 class="profile-username text-center"><%-sch.school%></h3>
+            <ul class="list-group list-group-unbordered mb-3">
+              <li class="list-group-item">
+                <b>Students</b> <a class="float-right">1,322</a>
+              </li>
+              <li class="list-group-item">
+                <b>Teachers</b> <a class="float-right">543</a>
+              </li>
+            </ul>
+            <a href="/education/update/<%-sch.eduid%>" class="btn btn-primary btn-block"><b>More</b></a>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+      <%})}%>
+    </div>
+  </div>
+</section>
+<!-- /.content -->
+<%- include('../templates/footer') %>
+<script src="/javascripts/education.js"></script>

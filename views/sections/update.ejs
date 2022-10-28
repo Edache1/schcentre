@@ -1,0 +1,79 @@
+<% const section = data.section; %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title"><%=title%></h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <!-- form start -->
+            <form role="form" name="update" method="post" action="/sections/update">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="section">Section</label>
+                    <input type="text" class="form-control" id="section" name="section" placeholder="section" value="<%-section.section%>">
+                    <input type="hidden" name="sessid" value="<%-section.sessid%>">
+                  </div>
+                  <div class="form-group">
+                    <label>Start Date:</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="far fa-calendar-alt"></i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control float-right" id="startDate" name="startDate" value="<%=section.startDate%>">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                  <!-- /.form group -->
+                  <div class="form-group">
+                    <label>End Date:</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="far fa-calendar-alt"></i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control float-right" id="endDate" name="endDate" value="<%=section.endDate%>">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                  <!-- /.form group -->
+                </div>
+              </div>
+              <!-- /row -->
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<%- include('../templates/footer') %>
+<script>
+  $(function () {
+    $('#startDate').daterangepicker({
+      singleDatePicker: true
+    });
+    //Date range picker
+    $('#endDate').daterangepicker({
+      singleDatePicker: true
+    });
+  })
+</script>

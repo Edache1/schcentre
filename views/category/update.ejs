@@ -1,0 +1,35 @@
+<div class="container">
+  <form method="post" name="registerCat" action="/category/update">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Category Title</label>
+        <input type="text" class="form-control" id="catName" name="catName" placeholder="Category Title" value="<%=data.catObj.catName%>">
+      </div>
+      <input type="hidden" id="catid" name="catid" value="<%=data.catObj.catid%>">
+      <div class="form-group col-md-6">
+        <label>Parent Category</label>
+        <select name="parentid">
+          <option></option>
+          <% if (data.categories){ data.categories.forEach(category => { 
+              let selectOption = (category.catid == data.catObj.parentid) ? 'selected' : ''; %>
+          <option <%=selectOption%> value="<%- category.catid %>"><%- category.catName %></option>
+          <% })} %>
+        </select>
+      </div>
+    </div><br>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <a href="/category/delete/<%=data.catObj.catid%>">delete category</a><br>
+  <div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Header</div>
+      <div class="card-body">
+        <img src="<%=data.catObj.catIcon%>" style="max-width: 100%">
+    </div>
+  </div>
+  <form method="POST" name="catIconForm" action="/category/updateIcon" enctype="multipart/form-data">
+    <input type="file" name="catIcon" id="catIcon">
+    <input type="hidden" id="cateid" name="cateid" value="<%=data.catObj.catid%>">
+    <button type="submit" class="btn btn-primary">save image</button>
+  </form>
+</div>
+<%- include('../templates/footer') %>

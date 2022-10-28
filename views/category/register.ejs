@@ -1,0 +1,25 @@
+<%  let categories = (data.categories) ? data.categories : ''; %>
+<div class="container">
+  <form method="post" name="registerCat" action="/category/register" enctype="multipart/form-data">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Category Title</label>
+        <input type="text" class="form-control" id="catName" name="catName" placeholder="Category Title">
+      </div>
+      <div class="form-group col-md-6">
+        <label>Parent Category</label>
+        <select name="parentid">
+          <option></option>
+          <% if (categories){ categories.forEach(category => { %>
+          <option value="<%- category.catid %>"><%- category.catName %></option>
+          <% })} %>
+        </select>
+      </div><br>
+      <div class="form-group col-md-6">
+        <input type="file" name="catIcon" id="catIcon">
+      </div>
+    </div><br>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+<%- include('../templates/footer') %>

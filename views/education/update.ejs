@@ -1,0 +1,145 @@
+<% const edu = data.education; %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-4">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title"><%=title%></h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" name="update" method="post" action="/education/update">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="school">School</label>
+                <input type="text" class="form-control" id="school" name="school" placeholder="school" value="<%-edu.school%>">
+                <input type="hidden" name="eduid" value="<%-edu.eduid%>">
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <a class="btn btn-sm btn-danger float-right" href="/education/delete/<%-edu.eduid%>">delete</a>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (left) -->
+      <!-- left column -->
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">School Sessions</h3>
+
+            <div class="card-tools">
+              <ul class="pagination pagination-sm float-right">
+                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="">Sessions</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th style="">action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%if(data.sections){ data.sections.forEach(section => {%>
+                <tr>
+                  <td><%=section.section%></td>
+                  <td><%=section.startDate%></td>
+                  <td><%=section.endDate%></td>
+                  <td>
+                    <a class="btn btn-warning btn-sm" href="/education/removesess/<%=section.sessid%>">
+                      <i class="fas fa-trash-alt">
+                      </i>
+                      remove
+                    </a>
+                  </td>
+                </tr>
+                <%})}else{%>
+                <tr>
+                  <td colspan="4" style="color:red" align="center">E M P T Y</td>
+                </tr>
+                <%}%>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+ <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Term/Semester</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Sessions</th>
+                  <th>Terms</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%if(data.terms.length){ data.terms.forEach(term => {%>
+                <tr>
+                  <td><%=term.section%></td>
+                  <td><%=term.term%></td>
+                  <td><%=term.startDate%></td>
+                  <td><%=term.endDate%></td>
+                  <td>
+                    <a class="btn btn-warning btn-sm" href="/education/removeterm/<%=term.siid%>">
+                      <i class="fas fa-trash-alt">
+                      </i>
+                      remove
+                    </a>
+                  </td>
+                </tr>
+                <%})}else{%>
+                <tr>
+                  <td colspan="5" style="color:red" align="center">E M P T Y</td>
+                </tr>
+                <%}%>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+<%- include('../templates/footer') %>
+<script src="/javascripts/education.js"></script>

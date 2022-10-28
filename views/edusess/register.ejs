@@ -1,0 +1,66 @@
+<!-- Main content -->
+<section class="content">
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"><%=title%></h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+          <i class="fas fa-minus"></i></button>
+        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+          <i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+      <!-- right column -->
+      <div class="col-md-6">
+        <!-- general form elements disabled -->
+        <div class="card card-warning card-outline">
+          <div class="card-header">
+            <h3 class="card-title">General Elements</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <form method="post" name="edusess" action="/edusess/register">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>School/Education Level</label>
+                    <select class="form-control" name="eduid">
+                      <option>select...</option>
+                      <% if (data.education){ data.education.forEach(edu => { %>
+                      <option value="<%- edu.eduid %>"><%- edu.school %></option>
+                      <% })} %>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <!-- select -->
+                  <div class="form-group">
+                    <label>Select Section</label>
+                    <select class="form-control" name="sessid">
+                      <option>select...</option>
+                      <% if (data.sections){ data.sections.forEach(section => { %>
+                      <option value="<%- section.sessid %>"><%- section.section %></option>
+                      <% })} %>
+                    </select>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <!-- /.card-body -->
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>
+      <!--/.col (right) -->
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</section>
+<!-- /.content -->
+<%- include('../templates/footer') %>
