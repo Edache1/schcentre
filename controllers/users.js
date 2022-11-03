@@ -57,21 +57,6 @@ module.exports.absolute = function(number){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.renderNewUserPage = function(req, res, next) {
 	const data = {};
 	category.obtenirCategory().then(catPromise => {
@@ -115,9 +100,9 @@ exports.users_listing = function(req, res, next) {
 	const pageData = {};
 	users.obtenirUsers().then(userPromise => {
 		pageData.users = userPromise.map(userPromise => userPromise.dataValues);
-		return res.json(pageData.users);
-/*		return res.render('users/users_listing', { title: 'Users', data: pageData, layout: './templates/layout' });
-*/	}).catch(err => {
+		/*return res.json(pageData.users);*/
+		return res.render('users/users_listing', { title: 'Users', data: pageData, layout: './templates/layout' });
+	}).catch(err => {
       return res.render('404', {title: '404 page not found'});
     });
 }
@@ -128,16 +113,16 @@ exports.renderUpdateUserPage = function(req, res, next) {
 		if(!userPromise) return res.status(404).send();
 	    userObj.user = userPromise.dataValues;
 	    userObj.userCategories = userPromise.dataValues.userCategories.map(item => item.dataValues);
-	    return res.json(userObj.user);
+	    /*return res.json(userObj.user);*/
 
-	   /* return category.obtenirCategory();
+	    return category.obtenirCategory();
 	}).then(catPromise => {
 		userObj.categories = catPromise.map(catPromise => catPromise.dataValues);
 		return userDocs.obtenirUserfile(null, userObj.user.userid);
 	}).then(imgPromise => {
 		userObj.img = imgPromise.dataValues;
 		return res.render('users/updateUser', { title: 'Update User', data: userObj, layout: './templates/layout' });
-	*/}).catch(err => {
+	}).catch(err => {
       	return res.render('404', {title: '404 page not found'});
     });	
 }

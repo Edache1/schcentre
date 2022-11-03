@@ -3,7 +3,6 @@ const {obtenirUsers, addMultipleUsers, deleteUser} = require('../../../helpers/u
 
 let server;
 
-//Best way to implement mock functions
 describe('/api/users', () => {
 	beforeEach(() => {server = require('../../../bin/www')});
 	afterEach(async () => {
